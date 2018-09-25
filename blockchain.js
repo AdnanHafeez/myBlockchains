@@ -19,9 +19,9 @@ class Blockchain {
 
   addBlock(newBlock) {
     newBlock.previousHash = this.latestBlock().hash;
+    newBlock.mineBlock(this.difficulty);
     this.chain.push(newBlock);
   }
-
 }
 
   // Check the integrity of a current blockchain
@@ -65,3 +65,13 @@ mineBlock(difficulty) {
 
 }
 }
+
+let testChain = new Blockchain();
+console.log("Mining Block...");
+testChain.addBlock(new Block(1,"This is block 1"));
+testChain.addBlock(new Block(1,"This is block 2"));
+testChain.addBlock(new Block(1,"This is block 3"));
+testChain.addBlock(new Block(1,"This is block 4"));
+
+console.log(JSON.stringify(testchain,null,4));
+console.log("Is the blockchain valid?" + testChain.checkValid().toString());
